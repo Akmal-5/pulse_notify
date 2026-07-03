@@ -57,7 +57,7 @@ async def user_cheking_mail (sessaion : AsyncSession , user_data) :
 
 async def user_check_code_mail (session : AsyncSession , code_mail) :
     
-    res = await session.execute(select(UserTeste).where(UserTeste.email == code_mail.mail))
+    res = await session.execute(select(UserTeste).where(UserTeste.email == code_mail.email))
     
     draft = res.scalar()
     
@@ -81,7 +81,7 @@ async def user_check_code_mail (session : AsyncSession , code_mail) :
                             )
         
     if draft.code != code_mail.code :
-        draft.code += code_mail.code
+        draft.code += 1
         await session.commit()
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST ,
                             detail="Неверный код!"
