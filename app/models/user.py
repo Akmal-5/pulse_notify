@@ -7,6 +7,7 @@ class CreateUsers (Base) :
     __tablename__ = "users"
     
     id : Mapped[int] = mapped_column(primary_key=True)
+    username : Mapped[str] = mapped_column()
     email : Mapped[str] = mapped_column()
     password : Mapped[int] = mapped_column()
     telegram_chat_id : Mapped[str] = mapped_column()
