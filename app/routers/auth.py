@@ -11,7 +11,7 @@ from typing import Annotated
 from fastapi import APIRouter , status , Depends , BackgroundTasks , HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
-router = APIRouter(prefix="auth/" , tags=["Авторизация"])
+router = APIRouter(prefix="/auth" , tags=["Авторизация"])
 
 
 @router.post("/register/",
@@ -49,7 +49,7 @@ async def user_login (session : Annotated[AsyncSession , Depends(create_session)
     
     if result :
         encode_access = jwt_encode_access(result)
-        encode_refresh = jwt_decode_refresh(result)
+        encode_refresh = jwt_encode_refresh(result)
         return {
             "access_token" : encode_access,
             "refresh_token" : encode_refresh

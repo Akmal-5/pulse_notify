@@ -16,7 +16,7 @@ async def user_cheking_mail (sessaion : AsyncSession , user_data) :
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST ,
                             detail="Такой ник уже занят"
                             )
-    res_email = await sessaion.execute(select(CreateUsers).where(CreateUsers.username == user_data.username))
+    res_email = await sessaion.execute(select(CreateUsers).where(CreateUsers.email == user_data.email))
     
     if res_email.scalar() :
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST ,

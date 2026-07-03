@@ -13,7 +13,7 @@ class CreateUser (BaseModel) :
 class UserAuthorization (BaseModel) :
     
     username : str = Field(description="Имя пользователя")
-    passwrod : str = Field(description="Пароль пользователя")
+    password : str = Field(description="Пароль пользователя")
     
 class ModelCheckCode(BaseModel) :
     email : EmailStr
